@@ -1,14 +1,14 @@
 package entity;
 
 /**
- * The Class HelloWorld.
+ * The Class Rock
  *
  * @author Fabien Paugois
  */
 public class Rock extends Entity {
 
 	/**
-	 * Instantiates a new hello world.
+	 * Instantiates a new Rock.
 	 *
 	 * @param X
 	 *          The X (horizontal) position of the Rock object.

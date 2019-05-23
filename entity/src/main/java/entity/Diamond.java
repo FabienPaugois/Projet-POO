@@ -1,14 +1,14 @@
 package entity;
 
 /**
- * The Class HelloWorld.
+ * The Class Diamond
  *
  * @author Fabien Paugois
  */
 public class Diamond extends Entity {
 
 	/**
-	 * Instantiates a new hello world.
+	 * Instantiates a new Diamond.
 	 *
 	 * @param X
 	 *          The X (horizontal) position of the Diamond object.

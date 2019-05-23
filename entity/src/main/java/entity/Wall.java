@@ -1,14 +1,14 @@
 package entity;
 
 /**
- * The Class HelloWorld.
+ * The Class Wall
  *
  * @author Fabien Paugois
  */
 public class Wall extends Entity {
 
 	/**
-	 * Instantiates a new hello world.
+	 * Instantiates a new Wall.
 	 *
 	 * @param X
 	 *          The X (horizontal) position of the Wall object.

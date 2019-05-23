@@ -1,14 +1,14 @@
 package entity;
 
 /**
- * The Class HelloWorld.
+ * The Class Air
  *
  * @author Fabien Paugois
  */
 public class Air extends Entity {
 
 	/**
-	 * Instantiates a new hello world.
+	 * Instantiates a new Air.
 	 *
 	 * @param X
 	 *          The X (horizontal) position of the Air object.

@@ -1,14 +1,14 @@
 package entity;
 
 /**
- * The Class HelloWorld.
+ * The Class Dirt
  *
  * @author Fabien Paugois
  */
 public class Dirt extends Entity {
 
 	/**
-	 * Instantiates a new hello world.
+	 * Instantiates a new Dirt.
 	 *
 	 * @param X
 	 *          The X (horizontal) position of the Dirt object.
