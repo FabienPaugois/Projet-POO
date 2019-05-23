@@ -21,8 +21,8 @@ public class Player {
 	
 	/**
 	 * 
-	 * @param x
-	 * 			the XPlayer position
+	 * @param x the XPlayer position
+	 * 			
 	 */
 	public void setXPlayer(int x) {
 		XPlayer = x;
