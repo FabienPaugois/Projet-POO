@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 import javax.swing.SwingUtilities;
@@ -18,6 +19,7 @@ public final class View implements IView, Runnable {
 
 	/** The frame. */
 	private final ViewFrame viewFrame;
+	
 
 	/**
 	 * Instantiates a new view.
@@ -39,16 +41,16 @@ public final class View implements IView, Runnable {
 	 */
 	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
 		switch (keyCode) {
-			case KeyEvent.VK_G:
+			case KeyEvent.VK_A:
 				return ControllerOrder.English;
-			case KeyEvent.VK_F:
+			case KeyEvent.VK_Z:
 				return ControllerOrder.Francais;
-			case KeyEvent.VK_D:
+			case KeyEvent.VK_E:
 				return ControllerOrder.Deutsch;
-			case KeyEvent.VK_I:
+			case KeyEvent.VK_R:
 				return ControllerOrder.Indonesia;
-			default:
-				return ControllerOrder.English;
+				default:				
+				return null;
 		}
 	}
 

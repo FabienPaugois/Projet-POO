@@ -10,14 +10,16 @@ import javax.swing.JOptionPane;
 
 import contract.IController;
 import contract.IModel;
+import entity.Entity2;
 
 /**
  * The Class ViewFrame.
  *
  * @author Jean-Aymeric Diet
  */
-class ViewFrame extends JFrame implements KeyListener {
+class ViewFrame extends JFrame implements KeyListener{
 
+	Entity2 entity;
 	/** The model. */
 	private IModel						model;
 
@@ -25,7 +27,7 @@ class ViewFrame extends JFrame implements KeyListener {
 	private IController				controller;
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -697358409737458175L;
-
+	
 	/**
 	 * Instantiates a new view frame.
 	 *
@@ -128,10 +130,10 @@ class ViewFrame extends JFrame implements KeyListener {
 	private void buildViewFrame(final IModel model) {
 		this.setModel(model);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setResizable(false);
+		this.setResizable(true);
 		this.addKeyListener(this);
 		this.setContentPane(new ViewPanel(this));
-		this.setSize(400 + this.getInsets().left + this.getInsets().right, 60 + this.getInsets().top + this.getInsets().bottom);
+		this.setSize(41 * 32+ this.getInsets().left + this.getInsets().right, 24*32 + this.getInsets().top + this.getInsets().bottom);
 		this.setLocationRelativeTo(null);
 	}
 
@@ -160,7 +162,34 @@ class ViewFrame extends JFrame implements KeyListener {
 	 * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
 	 */
 	public void keyPressed(final KeyEvent e) {
-		this.getController().orderPerform(View.keyCodeToControllerOrder(e.getKeyCode()));
+		switch(e.getKeyCode()) {
+		case KeyEvent.VK_UP:
+			this.getController().movementCharacter(e.getKeyCode());
+			break;
+		case KeyEvent.VK_DOWN:
+			this.getController().movementCharacter(e.getKeyCode());
+			break;
+		case KeyEvent.VK_RIGHT:
+			this.getController().movementCharacter(e.getKeyCode());
+			break;
+		case KeyEvent.VK_LEFT:
+			this.getController().movementCharacter(e.getKeyCode());
+			break;
+		case KeyEvent.VK_A:
+			this.getController().orderPerform(View.keyCodeToControllerOrder(e.getKeyCode()));
+			break;
+		case KeyEvent.VK_Z:
+			this.getController().orderPerform(View.keyCodeToControllerOrder(e.getKeyCode()));
+			break;
+		case KeyEvent.VK_E:
+			this.getController().orderPerform(View.keyCodeToControllerOrder(e.getKeyCode()));
+			break;
+		case KeyEvent.VK_R:
+			this.getController().orderPerform(View.keyCodeToControllerOrder(e.getKeyCode()));
+			break;
+		default:
+			break;
+		}		
 	}
 
 	/*

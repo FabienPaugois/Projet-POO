@@ -1,8 +1,7 @@
 package contract;
 
+import java.awt.Image;
 import java.util.Observable;
-
-import entity.HelloWorld;
 
 /**
  * The Interface IModel.
@@ -11,20 +10,15 @@ import entity.HelloWorld;
  */
 public interface IModel {
 
-	/**
-	 * Gets the hello world.
-	 *
-	 * @return the helloworld entity
-	 */
-	HelloWorld getHelloWorld();
+	String getTabLine(int i, int j);
 
-	/**
-	 * Load the message.
-	 *
-	 * @param code
-	 *          the code
-	 */
-	void loadHelloWorld(String code);
+	Image getMap(int i, int j);
+	
+	int getLevel();
+
+	void loadMap(int i);
+	
+	void setPosition(int i);
 
 	/**
 	 * Gets the observable.

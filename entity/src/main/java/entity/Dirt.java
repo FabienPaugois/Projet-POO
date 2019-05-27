@@ -1,32 +1,30 @@
 package entity;
 
-/**
- * The Class Dirt
- *
- * @author Fabien Paugois
- */
-public class Dirt extends Entity {
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+
+public class Dirt extends Entity{
+	
 	/**
-	 * Instantiates a new Dirt.
-	 *
-	 * @param X
-	 *          The X (horizontal) position of the Dirt object.
-	 * @param Y
-	 *          The Y (vertical) position of the Dirt object.
-	 * @param Breakable
-	 *          Is the Dirt breakable ?
-	 * @param Falling
-	 *          Is the Dirt falling ?
-	 * @param Pushable
-	 *          Can the Dirt be pushed ?
+	 * Constructor of the Dirt class initializes the parameters of the Dirt.
+	 * 
+	 *  @param X 
+	 *  	Used to initializes the position X
+	 *  @param Y
+	 *  	Used to initializes the position Y
 	 */
-	public Dirt(int X, int Y, boolean Breakable, boolean Falling, boolean Pushable) {
-		this.setX(X);
-		this.setY(Y);
-		this.setBreakable(Breakable);
-		this.setFalling(Falling);
-		this.setPushable(Pushable);
+	public Dirt(int X, int Y) {
+		this.isMovable = false;
+		this.canBeDestroyed = true;
+		this.canBePushed = false;
+		try {
+			this.spritePath = ImageIO.read(new File("C:\\Users\\rodri\\Desktop\\Projet java\\Sprite\\Sprites\\dirt.png"));
+			}catch(IOException e) {
+				e.printStackTrace();
+			}
+		this.posX = X;
+		this.posY = Y;
 	}
-
 }

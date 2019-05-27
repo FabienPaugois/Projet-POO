@@ -1,9 +1,12 @@
 package controller;
 
+import java.awt.Graphics;
+
 import contract.ControllerOrder;
 import contract.IController;
 import contract.IModel;
 import contract.IView;
+import entity.Entity2;
 
 /**
  * The Class Controller.
@@ -38,7 +41,7 @@ public final class Controller implements IController {
 	 * @see contract.IController#control()
 	 */
 	public void control() {
-		this.view.printMessage("Appuyer sur les touches 'E', 'F', 'D' ou 'I', pour afficher Hello world dans la langue d votre choix.");
+		this.view.printMessage("Appuyer sur les touches 'A', 'Z', 'E' ou 'R', pour charger les différentes Map");
 	}
 
 	/**
@@ -75,20 +78,22 @@ public final class Controller implements IController {
 	public void orderPerform(final ControllerOrder controllerOrder) {
 		switch (controllerOrder) {
 			case English:
-				this.model.loadHelloWorld("GB");
+				this.model.loadMap(1);
 				break;
 			case Francais:
-				this.model.loadHelloWorld("FR");
+				this.model.loadMap(2);
 				break;
 			case Deutsch:
-				this.model.loadHelloWorld("DE");
+				this.model.loadMap(3);
 				break;
 			case Indonesia:
-				this.model.loadHelloWorld("ID");
+				this.model.loadMap(4);
 				break;
 			default:
 				break;
 		}
 	}
-
+	public void movementCharacter(int KeyCode) {
+		this.model.setPosition(KeyCode);
+	}
 }

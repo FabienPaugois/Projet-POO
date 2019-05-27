@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Diamond extends Entity{
+public class Character extends Entity{
 	
 	/**
 	 * Constructor of the Diamond class initializes the parameters of the Diamond.
@@ -16,12 +16,12 @@ public class Diamond extends Entity{
 	 *  	Used to initializes the position Y
 	 */
 	
-	public Diamond(int X, int Y) {
+	public Character(int X, int Y) {
 		this.isMovable = true;
 		this.canBeDestroyed = true;
 		this.canBePushed = false;
 		try {
-			this.spritePath = ImageIO.read(new File("C:\\Users\\rodri\\Desktop\\Projet java\\Sprite\\Sprites\\diamond.png"));
+			this.spritePath = ImageIO.read(new File("C:\\Users\\rodri\\Desktop\\Projet java\\Sprite\\Sprites\\Player.png"));
 			}catch(IOException e) {
 				e.printStackTrace();
 			}

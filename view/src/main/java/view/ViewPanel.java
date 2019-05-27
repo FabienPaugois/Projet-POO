@@ -1,10 +1,15 @@
 package view;
 
 import java.awt.Graphics;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+
 
 /**
  * The Class ViewPanel.
@@ -17,7 +22,6 @@ class ViewPanel extends JPanel implements Observer {
 	private ViewFrame					viewFrame;
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -998294702363713521L;
-
 	/**
 	 * Instantiates a new view panel.
 	 *
@@ -44,10 +48,11 @@ class ViewPanel extends JPanel implements Observer {
 	 * @param viewFrame
 	 *          the new view frame
 	 */
+		
 	private void setViewFrame(final ViewFrame viewFrame) {
 		this.viewFrame = viewFrame;
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 *
@@ -63,8 +68,25 @@ class ViewPanel extends JPanel implements Observer {
 	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 	 */
 	@Override
-	protected void paintComponent(final Graphics graphics) {
-		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-		graphics.drawString(this.getViewFrame().getModel().getHelloWorld().getMessage(), 10, 20);
+	public void paintComponent(final Graphics graphics) {
+		int Y = 20;
+		viewFrame.setTitle("MENU");
+		if(this.getViewFrame().getModel().getTabLine(0,0) == null) {
+			try {
+			      Image img = ImageIO.read(new File("C:\\Users\\rodri\\Desktop\\Projet java\\Sprite\\menu.jpg"));
+			      graphics.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+			    } catch (IOException e) {
+			      e.printStackTrace();
+			    }				
+		}else {
+			viewFrame.setTitle("Level " + this.getViewFrame().getModel().getLevel());
+			graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
+			for(int i = 0; i < 22; i++) {
+				for(int j = 0; j < 40; j++) {
+					graphics.drawImage(this.getViewFrame().getModel().getMap(i, j), (j*32), Y, this);
+				}
+				Y += 32;
+			}
+		}
 	}
 }

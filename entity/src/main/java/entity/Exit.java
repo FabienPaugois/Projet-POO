@@ -1,34 +1,35 @@
 package entity;
 
-import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Wall extends Entity{
-/** The Boolean isvisible */
+public class Exit extends Entity{
+
+	/** The Boolean isvisible */
+	
 	private boolean isvisible;
 	
 	/**
-	 * Constructor of the Wall class initializes the parameters of the Level's Wall.
+	 * Constructor of the Exit class initializes the parameters of the Level's Exit.
 	 * 
 	 *  @param X 
 	 *  	Used to initializes the position X
 	 *  @param Y
 	 *  	Used to initializes the position Y
 	 */
-		public Wall(int X, int Y) {
+	public Exit(int X, int Y) {
 		this.isMovable = false;
 		this.canBeDestroyed = false;
 		this.canBePushed = false;
+		this.isvisible = false;
 		try {
-			spritePath = ImageIO.read(new File("C:\\Users\\rodri\\Desktop\\Projet java\\Sprite\\Sprites\\wall.png"));
+			this.spritePath = ImageIO.read(new File("C:\\Users\\rodri\\Desktop\\Projet java\\Sprite\\wall.png"));
 			}catch(IOException e) {
 				e.printStackTrace();
 			}
 		this.posX = X;
 		this.posY = Y;
 	}
-		
 }
