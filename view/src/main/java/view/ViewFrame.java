@@ -33,53 +33,9 @@ class ViewFrame extends JFrame implements KeyListener{
 	 *
 	 * @param model
 	 *          the model
-	 * @throws HeadlessException
-	 *           the headless exception
+	 * 
 	 */
-	public ViewFrame(final IModel model) throws HeadlessException {
-		this.buildViewFrame(model);
-	}
-
-	/**
-	 * Instantiates a new view frame.
-	 *
-	 * @param model
-	 *          the model
-	 * @param gc
-	 *          the gc
-	 */
-	public ViewFrame(final IModel model, final GraphicsConfiguration gc) {
-		super(gc);
-		this.buildViewFrame(model);
-	}
-
-	/**
-	 * Instantiates a new view frame.
-	 *
-	 * @param model
-	 *          the model
-	 * @param title
-	 *          the title
-	 * @throws HeadlessException
-	 *           the headless exception
-	 */
-	public ViewFrame(final IModel model, final String title) throws HeadlessException {
-		super(title);
-		this.buildViewFrame(model);
-	}
-
-	/**
-	 * Instantiates a new view frame.
-	 *
-	 * @param model
-	 *          the model
-	 * @param title
-	 *          the title
-	 * @param gc
-	 *          the gc
-	 */
-	public ViewFrame(final IModel model, final String title, final GraphicsConfiguration gc) {
-		super(title, gc);
+	public ViewFrame(final IModel model) {
 		this.buildViewFrame(model);
 	}
 
@@ -152,8 +108,7 @@ class ViewFrame extends JFrame implements KeyListener{
 	 *
 	 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
 	 */
-	public void keyTyped(final KeyEvent e) {
-
+	public void keyTyped(final KeyEvent e) {	
 	}
 
 	/*
@@ -162,18 +117,27 @@ class ViewFrame extends JFrame implements KeyListener{
 	 * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
 	 */
 	public void keyPressed(final KeyEvent e) {
+		
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent)
+	 */
+	public void keyReleased(final KeyEvent e) {
 		switch(e.getKeyCode()) {
 		case KeyEvent.VK_UP:
-			this.getController().movementCharacter(e.getKeyCode());
+			this.getController().movement(e.getKeyCode());
 			break;
 		case KeyEvent.VK_DOWN:
-			this.getController().movementCharacter(e.getKeyCode());
+			this.getController().movement(e.getKeyCode());
 			break;
 		case KeyEvent.VK_RIGHT:
-			this.getController().movementCharacter(e.getKeyCode());
+			this.getController().movement(e.getKeyCode());
 			break;
 		case KeyEvent.VK_LEFT:
-			this.getController().movementCharacter(e.getKeyCode());
+			this.getController().movement(e.getKeyCode());
 			break;
 		case KeyEvent.VK_A:
 			this.getController().orderPerform(View.keyCodeToControllerOrder(e.getKeyCode()));
@@ -189,15 +153,6 @@ class ViewFrame extends JFrame implements KeyListener{
 			break;
 		default:
 			break;
-		}		
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent)
-	 */
-	public void keyReleased(final KeyEvent e) {
-
+		}
 	}
 }

@@ -3,16 +3,18 @@ package contract;
 /**
  * The Enum ControllerOrder.
  *
- * @author Jean-Aymeric Diet
+ * @author rodri
  */
 public enum ControllerOrder {
 
-	/** The English. */
-	English,
-	/** The French. */
-	Francais,
-	/** The Deutch. */
-	Deutsch,
-	/** The Indonesia. */
-	Indonesia
+	/** The First Map */
+	map1,
+	/** The Second Map */
+	map2,
+	/** The Third Map */
+	map3,
+	/** The Fourth Map */
+	map4,
+	/** The Fifth Map */
+	map5,
 }

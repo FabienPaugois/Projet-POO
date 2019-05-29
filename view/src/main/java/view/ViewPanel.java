@@ -70,16 +70,16 @@ class ViewPanel extends JPanel implements Observer {
 	@Override
 	public void paintComponent(final Graphics graphics) {
 		int Y = 20;
-		viewFrame.setTitle("MENU");
 		if(this.getViewFrame().getModel().getTabLine(0,0) == null) {
+			viewFrame.setTitle("MENU");
 			try {
 			      Image img = ImageIO.read(new File("C:\\Users\\rodri\\Desktop\\Projet java\\Sprite\\menu.jpg"));
 			      graphics.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
 			    } catch (IOException e) {
 			      e.printStackTrace();
-			    }				
+			    }
 		}else {
-			viewFrame.setTitle("Level " + this.getViewFrame().getModel().getLevel());
+			viewFrame.setTitle("Level " + this.getViewFrame().getModel().getLevel() + "                   Number of diamond(s) : "+this.getViewFrame().getModel().getCharacter().getNbDiamond());
 			graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 			for(int i = 0; i < 22; i++) {
 				for(int j = 0; j < 40; j++) {

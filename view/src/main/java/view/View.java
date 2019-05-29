@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 import javax.swing.SwingUtilities;
@@ -42,13 +41,15 @@ public final class View implements IView, Runnable {
 	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
 		switch (keyCode) {
 			case KeyEvent.VK_A:
-				return ControllerOrder.English;
+				return ControllerOrder.map1;
 			case KeyEvent.VK_Z:
-				return ControllerOrder.Francais;
+				return ControllerOrder.map2;
 			case KeyEvent.VK_E:
-				return ControllerOrder.Deutsch;
+				return ControllerOrder.map3;
 			case KeyEvent.VK_R:
-				return ControllerOrder.Indonesia;
+				return ControllerOrder.map4;
+			case KeyEvent.VK_T:
+				return ControllerOrder.map5;
 				default:				
 				return null;
 		}
@@ -70,6 +71,11 @@ public final class View implements IView, Runnable {
 	 */
 	public void run() {
 		this.viewFrame.setVisible(true);
+	}
+	
+	public void close() {
+		this.viewFrame.dispose();
+		System.exit(0);
 	}
 
 	/**

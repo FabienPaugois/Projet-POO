@@ -1,10 +1,11 @@
- package model;
+package model;
 
 import java.awt.Image;
 import java.sql.SQLException;
 import java.util.Observable;
 
 import contract.IModel;
+import entity.Air;
 import entity.Boulder;
 import entity.Character;
 import entity.Diamond;
@@ -20,80 +21,76 @@ import entity.Wall;
  */
 public final class Model extends Observable implements IModel {
 
-	/** The helloWorld. */
+	/** The Wall */
 	Wall wall;
 	Dirt dirt;
 	Boulder boulder;
 	Diamond diamond;
-	Void air;
-	public Character character;
+	Air air;
+	Character character;
 	Door door;
 	
+	public Character getCharacter() {
+		return character;
+	}
+
 	int level = 0;
-	
+
+	int DoorX;
+	int DoorY;
+
+	public int getDoorX() {
+		return DoorX;
+	}
+
+	public int getDoorY() {
+		return DoorY;
+	}
+
 	private String[] TabLine = new String[22];
 	private String[] TabLine2 = new String[40];
 	private String[][] TabMap = new String[22][40];
-	private Entity[][] TabEntity;
+	private Entity[][] TabEntity = new Entity[22][40];
 	private Image[][] Map = new Image[22][40];
+
 	/**
 	 * Instantiates a new model.
 	 */
-	public Model() {
-		this.TabEntity = new Entity[22][40];
-	}
 
-	/**
-     * Gets the hello world.
-     *
-     * @return the hello world
-     */
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see contract.IModel#getMessage()
-	 */
+	public Model() {
+	}
+	
 	public String getTabLine(int i, int j) {
 		return TabMap[i][j];
 	}
 
-	/**
-     * Sets the hello world.
-     *
-     * @param helloWorld
-     *            the new hello world
-     */
-	
-	/*private void setTabLine(String line, int nb) {
-		this.TabLine[nb] = line;
+	public void update() {
 		this.setChanged();
 		this.notifyObservers();
-	}*/
+	}
 
 	/**
-     * Load Map.
-     *
-     */
-	/*
-	 * (non-Javadoc)
+	 * Load Map.
+	 * 
+	 * @param map
+	 * 			The map which be loaded
 	 *
-	 * @see contract.IModel#getMessage(java.lang.String)
 	 */
 	public void loadMap(int map) {
 		setLevel(map);
 		try {
 			final DAOMap daoLine = new DAOMap(DBConnection.getInstance().getConnection());
-		for(int i = 0; i < 22; i++) {
+			for (int i = 0; i < 22; i++) {
 				TabLine[i] = daoLine.find(i + 1, map);
-				}
-		splitTab(TabLine);
-		instanceObject(TabMap);
+			}
+			splitTab(TabLine);
+			instanceObject(TabMap);
 		} catch (final SQLException e) {
 			e.printStackTrace();
 		}
-		this.setChanged();
-		this.notifyObservers();
+		update();
 	}
+
 	public int getLevel() {
 		return level;
 	}
@@ -101,150 +98,125 @@ public final class Model extends Observable implements IModel {
 	public void setLevel(int level) {
 		this.level = level;
 	}
-	public void setPosition(int i) {
-		swap(TabEntity, Map, i);
+
+	public int getPosX() {
+		return character.posX;
 	}
-	
-	public void swap(Entity[][] tabEntity, Image[][] tabImage, int i) {
-		Entity entity;
-		Image image;
-		Boolean move = false;
-		for(int y = 0; y < 22; y++) {
-			for(int x = 0; x < 40; x++) {
-				if(tabEntity[y][x] instanceof Character) {
-					move = true;
-					switch(i) {
-						case 38:
-							entity = tabEntity[y][x];
-							tabEntity[y][x] = tabEntity[y-1][x];
-							tabEntity[y-1][x] = entity;
-							image = tabImage[y][x];
-							tabImage[y][x] = tabImage[y-1][x];
-							tabImage[y-1][x] = image;
-							break;
-						case 40:
-							entity = tabEntity[y][x];
-							tabEntity[y][x] = tabEntity[y+1][x];
-							tabEntity[y+1][x] = entity;
-							image = tabImage[y][x];
-							tabImage[y][x] = tabImage[y+1][x];
-							tabImage[y+1][x] = image;
-							break;
-						case 39:
-							entity = tabEntity[y][x];
-							tabEntity[y][x] = tabEntity[y][x+1];
-							tabEntity[y][x+1] = entity;
-							image = tabImage[y][x];
-							tabImage[y][x] = tabImage[y][x+1];
-							tabImage[y][x+1] = image;
-							break;
-						case 37:
-							entity = tabEntity[y][x];
-							tabEntity[y][x] = tabEntity[y][x-1];
-							tabEntity[y][x-1] = entity;
-							image = tabImage[y][x];
-							tabImage[y][x] = tabImage[y][x-1];
-							tabImage[y][x-1] = image;
-					}
-					this.setChanged();
-					this.notifyObservers();
-				}
-				if(move == true)
-					break;
-			}
-			if(move == true)
-				break;
-		}
+
+	public int getPosY() {
+		return character.posY;
+	}
+
+	public void setPosX(int i) {
+		character.posX = character.posX + i;
+	}
+
+	public void setPosY(int i) {
+		character.posY = character.posY + i;
 	}
 
 	/**
 	 * instanceObject
 	 * 
-	 * The function instanceObject instance Object and load the Image in the array Map[][].
+	 * The function instanceObject instance Object and load the Image in the array
+	 * Map[][].
 	 * 
-	 * @param tabMap
-	 * 			The parameter tabMap is used to create Object depending on the letter it contains.
+	 * @param tabMap The parameter tabMap is used to create Object depending on the
+	 *               letter it contains.
 	 * 
 	 */
-	public void instanceObject(String[][] tabMap ) {
-		int Y = 20;
-		for(int i = 0; i < 22; i++) {
-			for(int j = 0; j < 40; j++) {
-				switch(tabMap[i][j]) {
+	
+	public void instanceObject(String[][] tabMap) {
+		for (int i = 0; i < 22; i++) {
+			for (int j = 0; j < 40; j++) {
+				switch (tabMap[i][j]) {
 				case "M":
-					this.wall = new Wall(10 + (i * 32), Y);
+					this.wall = new Wall(i, j);
 					TabEntity[i][j] = this.wall;
 					Map[i][j] = this.wall.getSpritePath();
 					break;
 				case "T":
-					this.dirt = new Dirt(10 + (i * 32), Y);
+					this.dirt = new Dirt(i, j);
 					TabEntity[i][j] = this.dirt;
 					Map[i][j] = this.dirt.getSpritePath();
 					break;
 				case "D":
-					this.diamond = new Diamond(10 + (i * 32), Y);
+					this.diamond = new Diamond(i, j);
 					TabEntity[i][j] = this.diamond;
 					Map[i][j] = this.diamond.getSpritePath();
 					break;
 				case "C":
-					this.boulder = new Boulder(10 + (i * 32), Y);
+					this.boulder = new Boulder(i, j);
 					TabEntity[i][j] = this.boulder;
 					Map[i][j] = this.boulder.getSpritePath();
 					break;
 				case "E":
-					this.door = new Door(10 + (i * 32), Y);
-					TabEntity[i][j] = this.door;
-					Map[i][j] = this.door.getSpritePath();
+					this.wall = new Wall(i, j);
+					TabEntity[i][j] = this.wall;
+					Map[i][j] = this.wall.getSpritePath();
+					DoorX = j;
+					DoorY = i;
 					break;
 				case "P":
-					this.character = new Character(10 + (i*32), Y);
+					this.character = new Character(i, j);
 					TabEntity[i][j] = this.character;
 					Map[i][j] = this.character.getSpritePath();
 					break;
+				case "A":
+					this.air = new Air(i, j);
+					TabEntity[i][j] = this.air;
+					Map[i][j] = this.air.getSpritePath();
+					break;
 				default:
 					System.out.println("Error");
+					break;
 				}
 			}
-			Y += 32;
 		}
 	}
 	/**
-	 * getMap 
-	 * 		Send the image of the Map.
+	 * getMap Send the image of the Map.
 	 * 
-	 * @param i
-	 * 			This is the horizontal position in the array.
-	 * @param j
-	 * 			This is the vertical position in the array.
+	 * @param i This is the horizontal position in the array.
+	 * @param j This is the vertical position in the array.
 	 * 
 	 */
 	public Image getMap(int i, int j) {
 		return Map[i][j];
 	}
-	
+
+	public void setMap(int i, int j, Image image) {
+		Map[i][j] = image;
+	}
+
 	public Entity[][] getTabEntity() {
 		return TabEntity;
 	}
-	
-	public Image[][] getMap(){
+
+	public void setTabEntity(int i, int j, Entity entity) {
+		TabEntity[i][j] = entity;
+	}
+
+	public Image[][] getMap() {
 		return Map;
 	}
-	
+
 	public void splitTab(String[] tab) {
 		String a;
-		for(int i = 0; i < 22 ; i++) {
+		for (int i = 0; i < 22; i++) {
 			a = tab[i];
 			TabLine2 = a.split("");
-			for(int j = 0; j < 40; j++) {
+			for (int j = 0; j < 40; j++) {
 				TabMap[i][j] = TabLine2[j];
 			}
 		}
 	}
+
 	/**
-     * Gets the observable.
-     *
-     * @return the observable
-     */
+	 * Gets the observable.
+	 *
+	 * @return the observable
+	 */
 	/*
 	 * (non-Javadoc)
 	 *

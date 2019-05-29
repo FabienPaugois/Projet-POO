@@ -1,49 +1,85 @@
 package view;
 
-import java.awt.Color;
-import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.File;
-import java.io.IOException; 
-import javax.imageio.ImageIO;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 
-import contract.ControllerOrder;
+import contract.IModel;
 
-public class ViewButton extends JButton implements MouseListener{
-	private String name;
-	private Image img;
+public class ViewButton extends JPanel implements ActionListener{
 	
-	public ViewButton(String str) {
-		super(str);
-		this.name = str;
-		this.addMouseListener(this);
+	private ImageIcon screen;
+	private Image imgScreen;
+	private int back1;
+	private JButton but1;
+	private JButton but2;
+	private JButton but3;
+	private JButton but4;
+	private JButton but5;
+	private IModel model;
+	private ViewFrame view;
+
+	public ViewButton(IModel model, ViewFrame view) {
+		super();
+		this.model = model;
+		this.view = view;
+		this.setLayout(null);
+		this.back1 = 0;
+		but1 = new JButton("Level 1");
+		but1.addActionListener(this);
+		this.add(but1);
+		but1.setBounds(360, 530, 80, 30);
+
+		but2 = new JButton("Level 2");
+		but2.addActionListener(this);
+		this.add(but2);
+		but2.setBounds(480, 530, 80, 30);
+
+		but3 = new JButton("Level 3");
+		but3.addActionListener(this);
+		this.add(but3);
+		but3.setBounds(600, 530, 80, 30);
+
+		but4 = new JButton("Level 4");
+		but4.addActionListener(this);
+		this.add(but4);
+		but4.setBounds(720, 530, 80, 30);
+
+		but5 = new JButton("Level 5");
+		but5.addActionListener(this);
+		this.add(but5);
+		but5.setBounds(840, 530, 80, 30);
+
+		screen = new ImageIcon(getClass().getResource("/images/menu.jpg"));
+		this.imgScreen = this.screen.getImage();
+
 	}
+
 	public void paintComponent(Graphics g) {
-		Graphics2D g2d = (Graphics2D)g;
-		GradientPaint gp = new GradientPaint(0,0,Color.blue,0,20,Color.CYAN,true);
-		g2d.setPaint(gp);
-		g2d.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
-		g2d.setColor(Color.black);
-		g2d.drawString(this.name, this.getWidth()/2 - (this.getWidth() / 2  / 4),this.getHeight() / 2 +5 );
+		super.paintComponents(g);
+		Graphics g2 = (Graphics2D) g;
+
+		g2.drawImage(this.imgScreen, 0, 0, this.getWidth(), this.getHeight(), this);
 	}
-	//Méthode appelée lors du clic de souris
-	  public void mouseClicked(MouseEvent event) { }
 
-	  //Méthode appelée lors du survol de la souris
-	  public void mouseEntered(MouseEvent event) { }
-
-	  //Méthode appelée lorsque la souris sort de la zone du bouton
-	  public void mouseExited(MouseEvent event) { }
-
-	  //Méthode appelée lorsque l'on presse le bouton gauche de la souris
-	  public void mousePressed(MouseEvent event) {
-	  }
-
-	  //Méthode appelée lorsque l'on relâche le clic de souris
-	  public void mouseReleased(MouseEvent event) { }
+	public void actionPerformed(ActionEvent e) {
+		Object source = e.getSource();
+		if (source == but1) {
+			model.loadMap(1);
+		} else if (source == but2) {
+			model.loadMap(2);
+		} else if (source == but3) {
+			model.loadMap(3);
+		} else if (source == but4) {
+			model.loadMap(4);
+		} else if (source == but5) {
+			model.loadMap(5);
+		}
+	}
 }
