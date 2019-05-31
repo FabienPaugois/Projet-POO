@@ -65,7 +65,6 @@ class DAOMap extends DAOEntity<Line>{
 	 *
 	 * @see model.DAOEntity#find(int)
 	 */
-	@Override
 	public String find(int id, int map) {
 		String line = " ";
 		String name = "line" + map;	

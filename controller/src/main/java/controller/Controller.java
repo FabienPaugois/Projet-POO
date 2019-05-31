@@ -45,7 +45,7 @@ public final class Controller implements IController {
 	 * @see contract.IController#control()
 	 */
 	public void control() {
-		this.view.printMessage("Appuyer sur les touches 'A', 'Z', 'E' ou 'R', pour charger les différentes Map");
+		this.view.printMessage("Press 'A', 'Z', 'E', 'R' or 'T' to generate the different levels");
 	}
 
 	/**
@@ -70,6 +70,14 @@ public final class Controller implements IController {
 		return this.model;
 	}
 
+	private void threadCreation() {
+		if (threadList.isEmpty()) {
+			BoulderThread thread = new BoulderThread("thread", view, model);
+			threadList.add(thread);
+			threadList.get(0).start();
+		}
+	}
+
 	/**
 	 * Order perform.
 	 *
@@ -80,14 +88,6 @@ public final class Controller implements IController {
 	 *
 	 * @see contract.IController#orderPerform(contract.ControllerOrder)
 	 */
-	private void threadCreation() {
-		if (threadList.isEmpty()) {
-			BoulderThread thread = new BoulderThread("thread", view, model);
-			threadList.add(thread);
-			threadList.get(0).start();
-		}
-	}
-
 	public void orderPerform(final ControllerOrder controllerOrder) {
 		switch (controllerOrder) {
 		case map1:
@@ -118,9 +118,9 @@ public final class Controller implements IController {
 	public void movement(int KeyCode) {
 		swap(model.getTabEntity(), model.getMap(), KeyCode);
 		if (model.getCharacter().getNbDiamond() == 10) {
-			Door door = new Door(model.getDoorX(), model.getDoorY());
-			model.setTabEntity(model.getDoorX(), model.getDoorY(), door);
-			model.setMap(model.getDoorX(), model.getDoorY(), door.getSpritePath());
+			Door door = new Door(model.getDoorY(), model.getDoorX());
+			model.setTabEntity(model.getDoorY(), model.getDoorX(), door);
+			model.setMap(model.getDoorY(), model.getDoorX(), door.getSpritePath());
 		}
 	}
 
@@ -161,13 +161,13 @@ public final class Controller implements IController {
 				tabImage[y - 1][x] = image;
 				model.setPosX(-1);
 			}
-			if (y == model.getDoorX() && x == model.getDoorY()) {
+			if (y == model.getDoorY() && x == model.getDoorX()) {
 				int level = model.getLevel() + 1;
-				if (level == 3) {
-					view.printMessage("tu as finis le jeu congratulation");
+				if (level == 6) {
+					view.printMessage("You have finished our Game, Congratulations Pay $99 to get another map");
 					view.close();
 				} else {
-					view.printMessage("tu as gagné gg essai le level " + level);
+					view.printMessage("You won the level " + level + ", continue if you have the balls");
 					model.loadMap(model.getLevel() + 1);
 				}
 			}
@@ -186,13 +186,13 @@ public final class Controller implements IController {
 				tabImage[y + 1][x] = image;
 				model.setPosX(1);
 			}
-			if (y == model.getDoorX() && x == model.getDoorY()) {
+			if (y == model.getDoorY() && x == model.getDoorX()) {
 				int level = model.getLevel() + 1;
-				if (level == 3) {
-					view.printMessage("tu as finis le jeu congratulation");
+				if (level == 6) {
+					view.printMessage("You have finished our Game, Congratulations Pay $99 to get another map");
 					view.close();
 				} else {
-					view.printMessage("tu as gagné gg essai le level " + level);
+					view.printMessage("You won the level " + level + ", continue if you have the balls");
 					model.loadMap(model.getLevel() + 1);
 				}
 			}
@@ -222,13 +222,13 @@ public final class Controller implements IController {
 				tabImage[y][x] = image;
 				model.setPosY(1);
 			}
-			if (y == model.getDoorX() && x == model.getDoorY()) {
+			if (y == model.getDoorY() && x == model.getDoorX()) {
 				int level = model.getLevel() + 1;
-				if (level == 3) {
-					view.printMessage("tu as finis le jeu congratulation");
+				if (level == 6) {
+					view.printMessage("You have finished our Game, Congratulations Pay $99 to get another map");
 					view.close();
 				} else {
-					view.printMessage("tu as gagné gg essai le level " + level);
+					view.printMessage("You won the level " + level + ", continue if you have the balls");
 					model.loadMap(model.getLevel() + 1);
 				}
 			}
@@ -258,13 +258,13 @@ public final class Controller implements IController {
 				tabImage[y][x] = image;
 				model.setPosY(-1);
 			}
-			if (y == model.getDoorX() && x == model.getDoorY()) {
+			if (y == model.getDoorY() && x == model.getDoorX()) {
 				int level = model.getLevel() + 1;
-				if (level == 3) {
-					view.printMessage("tu as finis le jeu congratulation");
+				if (level == 6) {
+					view.printMessage("You have finished our Game, Congratulations Pay $99 to get another map");
 					view.close();
 				} else {
-					view.printMessage("tu as gagné gg essai le level " + level);
+					view.printMessage("You won the level " + level + ", continue if you have the balls");
 					model.loadMap(model.getLevel() + 1);
 				}
 			}

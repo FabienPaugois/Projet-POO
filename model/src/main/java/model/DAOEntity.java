@@ -38,49 +38,4 @@ abstract class DAOEntity<E extends Entity2> {
 	protected Connection getConnection() {
 		return this.connection;
 	}
-
-	/**
-	 * Creates the.
-	 *
-	 * @param entity
-	 *          the entity
-	 * @return true, if successful
-	 */
-	//public abstract boolean create(E entity);
-
-	/**
-	 * Delete.
-	 *
-	 * @param entity
-	 *          the entity
-	 * @return true, if successful
-	 */
-	//public abstract boolean delete(E entity);
-
-	/**
-	 * Update.
-	 *
-	 * @param entity
-	 *          the entity
-	 * @return true, if successful
-	 */
-	//public abstract boolean update(E entity);
-
-	/**
-	 * Find.
-	 *
-	 * @param id
-	 *          the id
-	 * @return the e
-	 */
-
-	public abstract String find(int id, int map);
-
-	/**
-	 * Find.
-	 *
-	 * @param code
-	 *          the code
-	 * @return the e
-	 */
 }

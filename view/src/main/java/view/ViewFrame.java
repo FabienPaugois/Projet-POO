@@ -1,7 +1,5 @@
 package view;
 
-import java.awt.GraphicsConfiguration;
-import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -17,22 +15,21 @@ import entity.Entity2;
  *
  * @author Jean-Aymeric Diet
  */
-class ViewFrame extends JFrame implements KeyListener{
+class ViewFrame extends JFrame implements KeyListener {
 
 	Entity2 entity;
 	/** The model. */
-	private IModel						model;
+	private IModel model;
 
 	/** The controller. */
-	private IController				controller;
+	private IController controller;
 	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= -697358409737458175L;
-	
+	private static final long serialVersionUID = -697358409737458175L;
+
 	/**
 	 * Instantiates a new view frame.
 	 *
-	 * @param model
-	 *          the model
+	 * @param model the model
 	 * 
 	 */
 	public ViewFrame(final IModel model) {
@@ -51,8 +48,7 @@ class ViewFrame extends JFrame implements KeyListener{
 	/**
 	 * Sets the controller.
 	 *
-	 * @param controller
-	 *          the new controller
+	 * @param controller the new controller
 	 */
 	protected void setController(final IController controller) {
 		this.controller = controller;
@@ -70,8 +66,7 @@ class ViewFrame extends JFrame implements KeyListener{
 	/**
 	 * Sets the model.
 	 *
-	 * @param model
-	 *          the new model
+	 * @param model the new model
 	 */
 	private void setModel(final IModel model) {
 		this.model = model;
@@ -80,8 +75,7 @@ class ViewFrame extends JFrame implements KeyListener{
 	/**
 	 * Builds the view frame.
 	 *
-	 * @param model
-	 *          the model
+	 * @param model the model
 	 */
 	private void buildViewFrame(final IModel model) {
 		this.setModel(model);
@@ -89,15 +83,15 @@ class ViewFrame extends JFrame implements KeyListener{
 		this.setResizable(true);
 		this.addKeyListener(this);
 		this.setContentPane(new ViewPanel(this));
-		this.setSize(41 * 32+ this.getInsets().left + this.getInsets().right, 24*32 + this.getInsets().top + this.getInsets().bottom);
+		this.setSize(41 * 32 + this.getInsets().left + this.getInsets().right,
+				24 * 32 + this.getInsets().top + this.getInsets().bottom);
 		this.setLocationRelativeTo(null);
 	}
 
 	/**
 	 * Prints the message.
 	 *
-	 * @param message
-	 *          the message
+	 * @param message the message
 	 */
 	public void printMessage(final String message) {
 		JOptionPane.showMessageDialog(null, message);
@@ -108,7 +102,7 @@ class ViewFrame extends JFrame implements KeyListener{
 	 *
 	 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
 	 */
-	public void keyTyped(final KeyEvent e) {	
+	public void keyTyped(final KeyEvent e) {
 	}
 
 	/*
@@ -117,7 +111,7 @@ class ViewFrame extends JFrame implements KeyListener{
 	 * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
 	 */
 	public void keyPressed(final KeyEvent e) {
-		
+
 	}
 
 	/*
@@ -126,7 +120,7 @@ class ViewFrame extends JFrame implements KeyListener{
 	 * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent)
 	 */
 	public void keyReleased(final KeyEvent e) {
-		switch(e.getKeyCode()) {
+		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP:
 			this.getController().movement(e.getKeyCode());
 			break;
@@ -149,6 +143,9 @@ class ViewFrame extends JFrame implements KeyListener{
 			this.getController().orderPerform(View.keyCodeToControllerOrder(e.getKeyCode()));
 			break;
 		case KeyEvent.VK_R:
+			this.getController().orderPerform(View.keyCodeToControllerOrder(e.getKeyCode()));
+			break;
+		case KeyEvent.VK_T:
 			this.getController().orderPerform(View.keyCodeToControllerOrder(e.getKeyCode()));
 			break;
 		default:

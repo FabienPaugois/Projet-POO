@@ -2,8 +2,6 @@ package entity;
 
 import java.awt.Image;
 
-import javax.swing.ImageIcon;
-
 /**
  * 
  * * @author rodri

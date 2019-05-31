@@ -1,5 +1,9 @@
 package contract;
 
+import java.awt.Image;
+
+import entity.Entity;
+
 /**
  * The Interface IController.
  *
@@ -20,6 +24,8 @@ public interface IController {
 	 */
 	
 	public void orderPerform(ControllerOrder controllerOrder);
+	
+	public void swap(Entity[][] tabEntity, Image[][] tabImage, int i);
 	
 	/**
 	 * Initiate the movement and create the exit door

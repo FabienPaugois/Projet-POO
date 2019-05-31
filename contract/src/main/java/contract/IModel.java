@@ -67,25 +67,64 @@ public interface IModel {
  * 		The image added in the array 
  */
 	public void setMap(int i, int j, Image image);
+/**
+ * Get the level	
+ * @return
+ * 		The level the User is currently playing
+ */
 
 	int getLevel();
+/**
+ * Loads the Map i
+ * @param i
+ * 		The i
+ */
 
 	void loadMap(int i);
-
+/**
+ * Obtain the position Y of the Character
+ * @return
+ * 		The position Y of the Character
+ */
 	public int getPosY();
-
+/**
+ * 
+ * @return
+ * 		The position X of the Character
+ */
 	public int getPosX();
-
+/**
+ * Set the position Y of the Character
+ * @param i
+ * 		The i
+ */
 	public void setPosY(int i);
-	
+/**
+ * Set the position X of the Character	
+ * @param i
+ * 		The i
+ */
 	public void setPosX(int i);
-	
+/**
+ * @return
+ * 		Obtain the Character Object	
+ */
 	public Character getCharacter();
-	
+/**
+ * 	
+ * @return
+ * 		The X position of the Door
+ */
 	public int getDoorX();
-	
+/**
+ * 	
+ * @return
+ * 		The Y position of the Door
+ */
 	public int getDoorY();
-
+/**
+ * Notify the Observers and reload the Map
+ */
 	public void update();
 
 	/**

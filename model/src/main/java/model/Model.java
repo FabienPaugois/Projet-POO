@@ -23,35 +23,51 @@ public final class Model extends Observable implements IModel {
 
 	/** The Wall */
 	Wall wall;
+	/** The Dirt */
 	Dirt dirt;
+	/** The Boulder */
 	Boulder boulder;
+	/** The Diamond */
 	Diamond diamond;
+	/** The Air */
 	Air air;
+	/** The Character */
 	Character character;
+	/** The Door */
 	Door door;
-	
-	public Character getCharacter() {
-		return character;
-	}
 
-	int level = 0;
-
-	int DoorX;
-	int DoorY;
-
-	public int getDoorX() {
-		return DoorX;
-	}
-
-	public int getDoorY() {
-		return DoorY;
-	}
-
+	/**
+	 * Contains the line currently read in the database
+	 */
 	private String[] TabLine = new String[22];
+	/**
+	 * Contains each character of the TabLine's line
+	 */
 	private String[] TabLine2 = new String[40];
+	/**
+	 * Contains the entire Map
+	 */
 	private String[][] TabMap = new String[22][40];
+	/**
+	 * Contains each entity of the Map
+	 */
 	private Entity[][] TabEntity = new Entity[22][40];
+	/**
+	 * Contains each sprite of the Map
+	 */
 	private Image[][] Map = new Image[22][40];
+	/**
+	 * Contains the level
+	 */
+	int level = 0;
+	/**
+	 * Contains the X position of the Door
+	 */
+	int DoorX;
+	/**
+	 * Contains the Y position of the Door
+	 */
+	int DoorY;
 
 	/**
 	 * Instantiates a new model.
@@ -59,7 +75,7 @@ public final class Model extends Observable implements IModel {
 
 	public Model() {
 	}
-	
+
 	public String getTabLine(int i, int j) {
 		return TabMap[i][j];
 	}
@@ -69,13 +85,6 @@ public final class Model extends Observable implements IModel {
 		this.notifyObservers();
 	}
 
-	/**
-	 * Load Map.
-	 * 
-	 * @param map
-	 * 			The map which be loaded
-	 *
-	 */
 	public void loadMap(int map) {
 		setLevel(map);
 		try {
@@ -85,6 +94,8 @@ public final class Model extends Observable implements IModel {
 			}
 			splitTab(TabLine);
 			instanceObject(TabMap);
+			System.out.println(TabEntity[19][8]);
+			System.out.println(TabEntity[20][8]);
 		} catch (final SQLException e) {
 			e.printStackTrace();
 		}
@@ -95,6 +106,12 @@ public final class Model extends Observable implements IModel {
 		return level;
 	}
 
+	/**
+	 * Set the Level
+	 * 
+	 * @param level
+	 * 		The level
+	 */
 	public void setLevel(int level) {
 		this.level = level;
 	}
@@ -115,6 +132,18 @@ public final class Model extends Observable implements IModel {
 		character.posY = character.posY + i;
 	}
 
+	public Character getCharacter() {
+		return character;
+	}
+
+	public int getDoorX() {
+		return DoorX;
+	}
+
+	public int getDoorY() {
+		return DoorY;
+	}
+
 	/**
 	 * instanceObject
 	 * 
@@ -125,17 +154,17 @@ public final class Model extends Observable implements IModel {
 	 *               letter it contains.
 	 * 
 	 */
-	
+
 	public void instanceObject(String[][] tabMap) {
 		for (int i = 0; i < 22; i++) {
 			for (int j = 0; j < 40; j++) {
 				switch (tabMap[i][j]) {
-				case "M":
+				case "X":
 					this.wall = new Wall(i, j);
 					TabEntity[i][j] = this.wall;
 					Map[i][j] = this.wall.getSpritePath();
 					break;
-				case "T":
+				case "W":
 					this.dirt = new Dirt(i, j);
 					TabEntity[i][j] = this.dirt;
 					Map[i][j] = this.dirt.getSpritePath();
@@ -145,7 +174,7 @@ public final class Model extends Observable implements IModel {
 					TabEntity[i][j] = this.diamond;
 					Map[i][j] = this.diamond.getSpritePath();
 					break;
-				case "C":
+				case "O":
 					this.boulder = new Boulder(i, j);
 					TabEntity[i][j] = this.boulder;
 					Map[i][j] = this.boulder.getSpritePath();
@@ -157,7 +186,7 @@ public final class Model extends Observable implements IModel {
 					DoorX = j;
 					DoorY = i;
 					break;
-				case "P":
+				case "S":
 					this.character = new Character(i, j);
 					TabEntity[i][j] = this.character;
 					Map[i][j] = this.character.getSpritePath();
@@ -174,13 +203,7 @@ public final class Model extends Observable implements IModel {
 			}
 		}
 	}
-	/**
-	 * getMap Send the image of the Map.
-	 * 
-	 * @param i This is the horizontal position in the array.
-	 * @param j This is the vertical position in the array.
-	 * 
-	 */
+
 	public Image getMap(int i, int j) {
 		return Map[i][j];
 	}
@@ -201,8 +224,16 @@ public final class Model extends Observable implements IModel {
 		return Map;
 	}
 
+	/**
+	 * Split the String in the array TabLine
+	 * 
+	 * @param tab The array TabLine
+	 */
 	public void splitTab(String[] tab) {
 		String a;
+		for(int i= 0; i<22; i++) {
+			System.out.println(tab[i]);
+		}
 		for (int i = 0; i < 22; i++) {
 			a = tab[i];
 			TabLine2 = a.split("");
@@ -212,16 +243,6 @@ public final class Model extends Observable implements IModel {
 		}
 	}
 
-	/**
-	 * Gets the observable.
-	 *
-	 * @return the observable
-	 */
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see contract.IModel#getObservable()
-	 */
 	public Observable getObservable() {
 		return this;
 	}

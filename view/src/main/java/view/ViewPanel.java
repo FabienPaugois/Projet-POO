@@ -73,7 +73,7 @@ class ViewPanel extends JPanel implements Observer {
 		if(this.getViewFrame().getModel().getTabLine(0,0) == null) {
 			viewFrame.setTitle("MENU");
 			try {
-			      Image img = ImageIO.read(new File("C:\\Users\\rodri\\Desktop\\Projet java\\Sprite\\menu.jpg"));
+			      Image img = ImageIO.read(getClass().getResource("/images/menu.jpg"));
 			      graphics.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
 			    } catch (IOException e) {
 			      e.printStackTrace();
