@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 
 import contract.IController;
 import contract.IModel;
+import entity.Entity;
+import entity.Wall;
 
 /**
  * The Class ViewFrame.
@@ -131,6 +133,19 @@ class ViewFrame extends JFrame implements KeyListener {
 		case KeyEvent.VK_T:
 			this.getController().orderPerform(View.keyCodeToControllerOrder(e.getKeyCode()));
 			break;
+		case KeyEvent.VK_G:
+			Entity[][] tabEntity = getController().getModel().getTabEntity();
+			for (int i = 0; i < 22; i++) {
+				for (int j = 0; j < 40; j++) {
+					if (tabEntity[i][j] instanceof Wall) {
+						if (tabEntity[i][j].getCanBeDestroyed()) {
+							tabEntity[i][j].setCanBeDestroyed(false);
+						} else {
+							tabEntity[i][j].setCanBeDestroyed(true);
+						}
+					}
+				}
+			}
 		default:
 			break;
 		}

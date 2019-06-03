@@ -24,11 +24,6 @@ public class Wall extends Entity{
 		this.posX = X;
 		this.posY = Y;
 	}
-		/**
-		 * Sets the boolean setCanBeDestroyed
-		 */
-		public void setCanBeDestroyed(Boolean i) {
-			this.canBeDestroyed = i;
-		}
+
 		
 }
