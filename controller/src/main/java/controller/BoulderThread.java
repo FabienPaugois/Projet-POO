@@ -8,6 +8,7 @@ import entity.Air;
 import entity.Boulder;
 import entity.Diamond;
 import entity.Entity;
+import entity.Wall;
 import entity.Character;
 
 public class BoulderThread extends Thread {
@@ -15,14 +16,12 @@ public class BoulderThread extends Thread {
 	IView view;
 	/** The Model */
 	IModel model;
-
 	/** Contains the position X and Y of the Boulder */
 	int[][] tabBoulder = new int[2][210];
 	/** The Entity Array */
 	Entity[][] tabEntity;
 	/** The Sprite Array */
 	Image[][] tabMap;
-
 	/** The Boulder */
 	Boulder boulder;
 	/** The Diamond */
@@ -103,15 +102,18 @@ public class BoulderThread extends Thread {
 	 */
 	public void fall() {
 		tabBoulder = definition();
+		Entity entity;
+		Image image;
 		int j = 0;
-		for (j = 0; j < 100; j++) {
+		for (j = 0; j < 210; j++) {
 			if (tabEntity[tabBoulder[1][j] + 1][tabBoulder[0][j]] instanceof Air
 					|| tabEntity[tabBoulder[1][j] + 1][tabBoulder[0][j]] instanceof Character) {
 				if (tabEntity[tabBoulder[1][j] + 1][tabBoulder[0][j]] instanceof Air) {
 					swap(tabBoulder[0][j], tabBoulder[1][j]);
 					tabEntity[tabBoulder[1][j] + 1][tabBoulder[0][j]].setFalling(true);
 					if (tabEntity[tabBoulder[1][j] + 1][tabBoulder[0][j]].getFalling()
-							&& tabEntity[tabBoulder[1][j] + 2][tabBoulder[0][j]] instanceof Character && !(tabEntity[0][0].getCanBeDestroyed())) {
+							&& tabEntity[tabBoulder[1][j] + 2][tabBoulder[0][j]] instanceof Character
+							&& tabEntity[0][0].getCanBeDestroyed() == false) {
 						view.printMessage("              Game Over\n                Try Again");
 						model.loadMap(model.getLevel());
 					}
@@ -121,6 +123,29 @@ public class BoulderThread extends Thread {
 				if (tabEntity[tabBoulder[1][j]][tabBoulder[0][j] - 1] instanceof Air
 						|| tabEntity[tabBoulder[1][j]][tabBoulder[0][j] + 1] instanceof Air) {
 					tabEntity[tabBoulder[1][j]][tabBoulder[0][j]].setCanBePushed(true);
+				}
+			}
+			if (tabEntity[tabBoulder[1][j] + 1][tabBoulder[0][j]] instanceof Boulder
+					|| tabEntity[tabBoulder[1][j] + 1][tabBoulder[0][j]] instanceof Wall
+					|| tabEntity[tabBoulder[1][j] + 1][tabBoulder[0][j]] instanceof Diamond) {
+				if (tabEntity[tabBoulder[1][j]][tabBoulder[0][j] + 1] instanceof Air
+						&& tabEntity[tabBoulder[1][j] + 1][tabBoulder[0][j] + 1] instanceof Air) {
+					entity = tabEntity[tabBoulder[1][j]][tabBoulder[0][j]];
+					tabEntity[tabBoulder[1][j]][tabBoulder[0][j]] = tabEntity[tabBoulder[1][j]][tabBoulder[0][j] + 1];
+					tabEntity[tabBoulder[1][j]][tabBoulder[0][j] + 1] = entity;
+					image = tabMap[tabBoulder[1][j]][tabBoulder[0][j]];
+					tabMap[tabBoulder[1][j]][tabBoulder[0][j]] = tabMap[tabBoulder[1][j]][tabBoulder[0][j] + 1];
+					tabMap[tabBoulder[1][j]][tabBoulder[0][j] + 1] = image;
+					model.update();
+				} else if (tabBoulder[0][j] != 0 && tabEntity[tabBoulder[1][j]][tabBoulder[0][j] - 1] instanceof Air
+						&& tabEntity[tabBoulder[1][j] + 1][tabBoulder[0][j] - 1] instanceof Air) {
+					entity = tabEntity[tabBoulder[1][j]][tabBoulder[0][j]];
+					tabEntity[tabBoulder[1][j]][tabBoulder[0][j]] = tabEntity[tabBoulder[1][j]][tabBoulder[0][j] - 1];
+					tabEntity[tabBoulder[1][j]][tabBoulder[0][j] - 1] = entity;
+					image = tabMap[tabBoulder[1][j]][tabBoulder[0][j]];
+					tabMap[tabBoulder[1][j]][tabBoulder[0][j]] = tabMap[tabBoulder[1][j]][tabBoulder[0][j] - 1];
+					tabMap[tabBoulder[1][j]][tabBoulder[0][j] - 1] = image;
+					model.update();
 				}
 			}
 		}
