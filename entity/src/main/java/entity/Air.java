@@ -13,10 +13,7 @@ public class Air extends Entity{
 	 *  	Used to initializes the position X
 	 *  @param Y
 	 *  	Used to initializes the position Y
-	 *  define if the Air is movable or not
-	 *  define if the Air is destructible or not
-	 *  define if the Air can be pushed or not
-	 *  give the path to sprite of the Air
+	 *
 	 */
 	public Air(int X, int Y) {
 		this.canBeDestroyed = true;

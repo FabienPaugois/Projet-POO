@@ -12,10 +12,6 @@ public class Wall extends Entity{
 	 *  	Used to initializes the position X
 	 *  @param Y
 	 *  	Used to initializes the position Y
-	 *  define if the wall is movable or not
-	 *  define if the wall is destructible or not
-	 *  define if the wall can be pushed or not
-	 *  give the path to sprite of the wall
 	 */
 		public Wall(int X, int Y) {
 		this.canBeDestroyed = false;
@@ -28,5 +24,11 @@ public class Wall extends Entity{
 		this.posX = X;
 		this.posY = Y;
 	}
+		/**
+		 * Sets the boolean setCanBeDestroyed
+		 */
+		public void setCanBeDestroyed(Boolean i) {
+			this.canBeDestroyed = i;
+		}
 		
 }

@@ -21,10 +21,7 @@ public class Boulder extends Entity{
 	 *  	Used to initializes the position X
 	 *  @param Y
 	 *  	Used to initializes the position Y
-	 *  define if the Boulder is movable or not
-	 *  define if the Boulder is destructible or not
-	 *  define if the Boulder can be pushed or not
-	 *  give the path to sprite of the Boulder
+	 *
 	 */
 	public Boulder(int X, int Y) {
 		this.canBeDestroyed = false;

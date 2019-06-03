@@ -65,7 +65,7 @@ public class ControllerTest {
 			e.printStackTrace();
 		}
 		if (!(tabEntity[expectedY][expectedX] instanceof Boulder)) {
-			fail("sa marce pas");
+			fail("Ca marche pas");
 		}
 	}
 }

@@ -4,7 +4,7 @@ import java.awt.Image;
 
 /**
  * 
- * * @author Fabien
+ * @author Fabien
  *
  */
 public abstract class Entity {
@@ -12,6 +12,13 @@ public abstract class Entity {
 	/** The Boolean canbepushed */
 
 	public boolean canBePushed;
+	
+	/**
+	 * Sets the boolean setCanBeDestroyed
+	 */
+	public void setCanBeDestroyed(Boolean i) {
+		this.canBeDestroyed = i;
+	}
 
 	/**
 	 * 

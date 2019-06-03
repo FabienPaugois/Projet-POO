@@ -111,7 +111,7 @@ public class BoulderThread extends Thread {
 					swap(tabBoulder[0][j], tabBoulder[1][j]);
 					tabEntity[tabBoulder[1][j] + 1][tabBoulder[0][j]].setFalling(true);
 					if (tabEntity[tabBoulder[1][j] + 1][tabBoulder[0][j]].getFalling()
-							&& tabEntity[tabBoulder[1][j] + 2][tabBoulder[0][j]] instanceof Character) {
+							&& tabEntity[tabBoulder[1][j] + 2][tabBoulder[0][j]] instanceof Character && !(tabEntity[0][0].getCanBeDestroyed())) {
 						view.printMessage("              Game Over\n                Try Again");
 						model.loadMap(model.getLevel());
 					}
