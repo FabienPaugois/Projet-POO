@@ -37,7 +37,7 @@ public class ControllerTest {
 
 	@Test
 	public void testDiamond() {
-		model.loadMap(1);
+		model.loadMap(2);
 		controller.swap(model.getTabEntity(), model.getMap(), 39);
 		int expected = 1;
 		assertEquals(expected, model.getCharacter().getNbDiamond());
@@ -47,7 +47,7 @@ public class ControllerTest {
 	public void testDeplacement() {
 		model.loadMap(1);
 		int expectedX = 2;
-		int expectedY = 1;
+		int expectedY = 3;
 		controller.swap(model.getTabEntity(), model.getMap(), 39);
 		assertEquals(expectedX, model.getPosY());
 		assertEquals(expectedY, model.getPosX());
@@ -55,7 +55,7 @@ public class ControllerTest {
 
 	@Test
 	public void testEboulement() {
-		controller.orderPerform(ControllerOrder.map1);
+		controller.orderPerform(ControllerOrder.map2);
 		int expectedX = 3;
 		int expectedY = 2;
 		Entity[][] tabEntity = model.getTabEntity();

@@ -49,7 +49,7 @@ public class BoulderThread extends Thread {
 		while (true)
 			try {
 				this.fall();
-				Thread.sleep(10);
+				Thread.sleep(100);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

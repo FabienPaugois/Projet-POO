@@ -159,12 +159,12 @@ public final class Model extends Observable implements IModel {
 		for (int i = 0; i < 22; i++) {
 			for (int j = 0; j < 40; j++) {
 				switch (tabMap[i][j]) {
-				case "X":
+				case "M":
 					this.wall = new Wall(i, j);
 					TabEntity[i][j] = this.wall;
 					Map[i][j] = this.wall.getSpritePath();
 					break;
-				case "W":
+				case "T":
 					this.dirt = new Dirt(i, j);
 					TabEntity[i][j] = this.dirt;
 					Map[i][j] = this.dirt.getSpritePath();
@@ -174,7 +174,7 @@ public final class Model extends Observable implements IModel {
 					TabEntity[i][j] = this.diamond;
 					Map[i][j] = this.diamond.getSpritePath();
 					break;
-				case "O":
+				case "C":
 					this.boulder = new Boulder(i, j);
 					TabEntity[i][j] = this.boulder;
 					Map[i][j] = this.boulder.getSpritePath();
@@ -186,7 +186,7 @@ public final class Model extends Observable implements IModel {
 					DoorX = j;
 					DoorY = i;
 					break;
-				case "S":
+				case "P":
 					this.character = new Character(i, j);
 					TabEntity[i][j] = this.character;
 					Map[i][j] = this.character.getSpritePath();

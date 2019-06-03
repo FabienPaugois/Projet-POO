@@ -39,15 +39,15 @@ public class ModelTest {
 	@Test
 	public void testPosition() {
 		model.loadMap(1);
-		int expectedX = 37;
-		int expectedY = 9;
+		int expectedX = 38;
+		int expectedY = 18;
 		assertEquals(expectedX, model.getDoorX());
 		assertEquals(expectedY, model.getDoorY());
 	}
 	@Test
 	public void testPlayer() {
 		model.loadMap(2);
-		int expectedX = 1;
+		int expectedX = 3;
 		int expectedY = 1;
 		assertEquals(expectedX, model.getCharacter().posX);
 		assertEquals(expectedY, model.getCharacter().posY);

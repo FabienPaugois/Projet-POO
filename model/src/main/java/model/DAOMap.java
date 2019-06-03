@@ -67,7 +67,7 @@ class DAOMap extends DAOEntity<Entity>{
 	 */
 	public String find(int id, int map) {
 		String line = " ";
-		String name = "line" + map;	
+		String name = "Map" + map;	
 		try {
 			final String sql = "{call Recuperer(?)}";
 			final CallableStatement call = this.getConnection().prepareCall(sql);
