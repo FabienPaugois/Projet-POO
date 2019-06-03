@@ -23,6 +23,10 @@ public final class Controller implements IController {
 	/** The model. */
 	private IModel model;
 
+	/**
+	 * Instantiate a new arrayList which contains all the Threads
+	 */
+
 	ArrayList<Thread> threadList = new ArrayList<Thread>();
 
 	/**
@@ -124,22 +128,14 @@ public final class Controller implements IController {
 		}
 	}
 
-	private Boolean check(Entity entity) {
-		return entity.getCanBeDestroyed();
-	}
-
-	private Boolean checkDiamond(Entity entity) {
-		if (entity instanceof Diamond) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	private Boolean checkPushed(Entity entity) {
-
-		return entity.getCanBePushed();
-	}
+	/**
+	 * 
+	 * Swap the entities and the sprites to generate movement
+	 * 
+	 * @param tabEntity	An array of Entity
+	 * @param tabImage An array of Sprites
+	 * @param i The key code of the Key
+	 */
 
 	public void swap(Entity[][] tabEntity, Image[][] tabImage, int i) {
 		Entity entity;
@@ -148,7 +144,7 @@ public final class Controller implements IController {
 		int x = model.getPosY();
 		switch (i) {
 		case 38:
-			if (check(tabEntity[y - 1][x])) {
+			if (tabEntity[y - 1][x].getCanBeDestroyed()) {
 				entity = tabEntity[y][x];
 				image = tabImage[y][x];
 				if (tabEntity[y - 1][x] instanceof Diamond) {
@@ -167,15 +163,15 @@ public final class Controller implements IController {
 					view.printMessage("You have finished our Game, Congratulations Pay $99 to get another map");
 					view.close();
 				} else {
-					view.printMessage("You won the level " + level + ", continue if you have the balls");
+					view.printMessage("You won the level " + level);
 					model.loadMap(model.getLevel() + 1);
 				}
 			}
 			break;
 		case 40:
-			if (check(tabEntity[y + 1][x])) {
+			if (tabEntity[y + 1][x].getCanBeDestroyed()) {
 				entity = tabEntity[y][x];
-				if (checkDiamond(tabEntity[y + 1][x])) {
+				if (tabEntity[y + 1][x] instanceof Diamond) {
 					model.getCharacter().setNbDiamond(model.getCharacter().getNbDiamond() + 1);
 				}
 				Air air = new Air(x, y);
@@ -198,9 +194,9 @@ public final class Controller implements IController {
 			}
 			break;
 		case 39:
-			if (check(tabEntity[y][x + 1])) {
+			if (tabEntity[y][x + 1].getCanBeDestroyed()) {
 				entity = tabEntity[y][x];
-				if (checkDiamond(tabEntity[y][x + 1])) {
+				if (tabEntity[y][x + 1] instanceof Diamond) {
 					model.getCharacter().setNbDiamond(model.getCharacter().getNbDiamond() + 1);
 				}
 				Air air = new Air(x, y);
@@ -211,7 +207,7 @@ public final class Controller implements IController {
 				tabImage[y][x + 1] = image;
 				model.setPosY(1);
 			}
-			if (checkPushed(tabEntity[y][x + 1])) {
+			if (tabEntity[y][x + 1].getCanBePushed()) {
 				entity = tabEntity[y][x + 2];
 				tabEntity[y][x + 2] = tabEntity[y][x + 1];
 				tabEntity[y][x + 1] = tabEntity[y][x];
@@ -234,9 +230,9 @@ public final class Controller implements IController {
 			}
 			break;
 		case 37:
-			if (check(tabEntity[y][x - 1])) {
+			if (tabEntity[y][x - 1].getCanBeDestroyed()) {
 				entity = tabEntity[y][x];
-				if (checkDiamond(tabEntity[y][x - 1])) {
+				if (tabEntity[y][x - 1] instanceof Diamond) {
 					model.getCharacter().setNbDiamond(model.getCharacter().getNbDiamond() + 1);
 				}
 				Air air = new Air(x, y);
@@ -247,7 +243,7 @@ public final class Controller implements IController {
 				tabImage[y][x - 1] = image;
 				model.setPosY(-1);
 			}
-			if (checkPushed(tabEntity[y][x - 1])) {
+			if (tabEntity[y][x - 1].getCanBePushed()) {
 				entity = tabEntity[y][x - 2];
 				tabEntity[y][x - 2] = tabEntity[y][x - 1];
 				tabEntity[y][x - 1] = tabEntity[y][x];

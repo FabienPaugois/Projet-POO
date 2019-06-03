@@ -112,7 +112,7 @@ public class BoulderThread extends Thread {
 					tabEntity[tabBoulder[1][j] + 1][tabBoulder[0][j]].setFalling(true);
 					if (tabEntity[tabBoulder[1][j] + 1][tabBoulder[0][j]].getFalling()
 							&& tabEntity[tabBoulder[1][j] + 2][tabBoulder[0][j]] instanceof Character) {
-						view.printMessage("              Game Over\n                Try Again\nAll of this is because you suck");
+						view.printMessage("              Game Over\n                Try Again");
 						model.loadMap(model.getLevel());
 					}
 				}

@@ -27,7 +27,6 @@ public class Boulder extends Entity{
 	 *  give the path to sprite of the Boulder
 	 */
 	public Boulder(int X, int Y) {
-		this.isMovable = true;
 		this.canBeDestroyed = false;
 		this.canBePushed = false;
 		try {

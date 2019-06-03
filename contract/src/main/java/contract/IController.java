@@ -7,7 +7,7 @@ import entity.Entity;
 /**
  * The Interface IController.
  *
- * @author rodri
+ * @author Fabien
  */
 public interface IController {
 
@@ -25,13 +25,11 @@ public interface IController {
 	
 	public void orderPerform(ControllerOrder controllerOrder);
 	
-	public void swap(Entity[][] tabEntity, Image[][] tabImage, int i);
-	
 	/**
 	 * Initiate the movement and create the exit door
 	 * 
 	 * @param KeyCode
-	 * 			The code of the Keypressed
+	 * 			The code of the Key pressed
 	 */
 	
 	public void movement(int KeyCode);

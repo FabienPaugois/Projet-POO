@@ -17,7 +17,7 @@ import entity.Wall;
 /**
  * The Class Model.
  *
- * @author Jean-Aymeric Diet
+ * @author Fabien
  */
 public final class Model extends Observable implements IModel {
 

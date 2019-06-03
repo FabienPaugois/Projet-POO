@@ -19,7 +19,6 @@ public class Air extends Entity{
 	 *  give the path to sprite of the Air
 	 */
 	public Air(int X, int Y) {
-		this.isMovable = false;
 		this.canBeDestroyed = true;
 		this.canBePushed = true;
 		try {

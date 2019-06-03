@@ -18,7 +18,6 @@ public class Wall extends Entity{
 	 *  give the path to sprite of the wall
 	 */
 		public Wall(int X, int Y) {
-		this.isMovable = false;
 		this.canBeDestroyed = false;
 		this.canBePushed = false;
 		try {

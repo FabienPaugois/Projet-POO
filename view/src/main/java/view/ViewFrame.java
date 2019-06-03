@@ -8,7 +8,6 @@ import javax.swing.JOptionPane;
 
 import contract.IController;
 import contract.IModel;
-import entity.Entity2;
 
 /**
  * The Class ViewFrame.
@@ -17,7 +16,6 @@ import entity.Entity2;
  */
 class ViewFrame extends JFrame implements KeyListener {
 
-	Entity2 entity;
 	/** The model. */
 	private IModel model;
 
@@ -97,28 +95,13 @@ class ViewFrame extends JFrame implements KeyListener {
 		JOptionPane.showMessageDialog(null, message);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
-	 */
 	public void keyTyped(final KeyEvent e) {
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
-	 */
 	public void keyPressed(final KeyEvent e) {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent)
-	 */
 	public void keyReleased(final KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP:

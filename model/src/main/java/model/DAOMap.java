@@ -5,14 +5,14 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import entity.Line;
+import entity.Entity;
 
 /**
  * The Class DAOHelloWorld.
  *
  * @author Jean-Aymeric Diet
  */
-class DAOMap extends DAOEntity<Line>{
+class DAOMap extends DAOEntity<Entity>{
 
 	/**
 	 * Instantiates a new DAO hello world.
